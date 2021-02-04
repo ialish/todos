@@ -1,40 +1,42 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, Checkbox } from 'semantic-ui-react';
 
 const Item = ({ note, item }) => {
-  // const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(item.checked);
 
-  // useEffect(() => {
-  //   setChecked(checked);
-  //   return () => {
-  //     cleanup;
-  //   };
-  // }, [input]);
+  useEffect(() => {
+    item.setChecked(checked);
+    note.setLastUpdate();
+  }, [checked]);
 
   const handleRemoveItem = () => {
     note.removeItem(item.id);
+  };
+
+  const handleCheckChange = () => {
+    setChecked((checked) => !checked);
   };
 
   return (
     <div
       style={{
         display: 'flex',
-        alignItems: 'baseline',
+        alignItems: 'center',
         flexDirection: 'row',
         marginTop: '10px',
       }}
     >
+      <Button basic compact size='mini' onClick={handleRemoveItem}>
+        x
+      </Button>
       <Checkbox
         label={item.name}
-        // onChange={() => setChecked(!checked)}
-        // checked={checked}
+        onChange={handleCheckChange}
+        checked={checked}
         style={{
           marginRight: '10px',
         }}
       />
-      <Button basic circular compact size='mini' onClick={handleRemoveItem}>
-        <div style={{ color: 'red' }}>X</div>
-      </Button>
     </div>
   );
 };

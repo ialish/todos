@@ -4,7 +4,10 @@ import Notes from '../components/Notes';
 const Homepage = () => {
   return (
     <>
-      <NewNote />
+      <div style={{ textAlign: 'center', margin: '20px' }}>
+        <h1>Hi, Eyal!</h1>
+        <NewNote />
+      </div>
       <Notes />
     </>
   );

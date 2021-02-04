@@ -13,13 +13,19 @@ const NotesStore = () => ({
           id: uuidv4(),
           name: item,
           checked: false,
+          setChecked(checked) {
+            this.checked = checked;
+          },
         });
       },
       removeItem(id) {
         this.itemsList = this.itemsList.filter((item) => item.id !== id);
       },
       created: dayjs().format('DD/MM/YYYY'),
-      // lastUpdate: note.updateDate,
+      lastUpdate: '',
+      setLastUpdate() {
+        this.lastUpdate = dayjs().format('DD/MM/YYYY');
+      },
     });
   },
   removeNote(id) {

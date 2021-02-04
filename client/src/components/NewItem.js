@@ -15,6 +15,7 @@ const NewItem = ({ note }) => {
 
     if (item.length) {
       note.addItem(item);
+      // note.setLastUpdate();
       setItem('');
     }
   };

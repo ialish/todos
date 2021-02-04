@@ -21,7 +21,7 @@ const Note = ({ note }) => {
             floated='right'
             onClick={handleRemoveNote}
           >
-            x
+            X
           </Button>
           <Card.Header style={{ marginTop: '1px' }}>{note.name}</Card.Header>
         </Card.Content>
@@ -35,7 +35,7 @@ const Note = ({ note }) => {
         </Card.Content>
         <Card.Content extra>
           <Card.Meta>Created on: {note.created}</Card.Meta>
-          <Card.Meta>Last update: {note.created}</Card.Meta>
+          <Card.Meta>Last update: {note.lastUpdate}</Card.Meta>
         </Card.Content>
       </Card>
     </>
