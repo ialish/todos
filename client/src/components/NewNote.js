@@ -26,7 +26,7 @@ const NewNote = () => {
       <form onSubmit={handleAdd} style={{ margin: '10px' }}>
         <Input
           type='text'
-          placeholder='Create a new note...'
+          placeholder='Create a note...'
           value={noteName}
           onChange={handleChange}
           ref={inputRef}

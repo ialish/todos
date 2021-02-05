@@ -26,7 +26,7 @@ const NewItem = ({ note }) => {
         <Input
           style={{ width: '78%' }}
           type='text'
-          placeholder='Add a new item...'
+          placeholder='Add an item...'
           value={item}
           onChange={handleChange}
           ref={inputRef}
