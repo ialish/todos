@@ -15,7 +15,7 @@ const NewItem = ({ note }) => {
 
     if (item.length) {
       note.addItem(item);
-      // note.setLastUpdate();
+      note.setLastUpdate();
       setItem('');
     }
   };
@@ -24,6 +24,7 @@ const NewItem = ({ note }) => {
     <>
       <form onSubmit={handleAdd}>
         <Input
+          style={{ width: '78%' }}
           type='text'
           placeholder='Add a new item...'
           value={item}

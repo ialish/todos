@@ -5,9 +5,7 @@ const ItemsList = observer(({ note }) => {
   return (
     <div
       style={{
-        display: 'flex',
-        alignItems: 'baseline',
-        flexDirection: 'column',
+        marginBottom: '-7px',
       }}
     >
       {note?.itemsList.map((item) => (

@@ -1,13 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button, Checkbox } from 'semantic-ui-react';
 
 const Item = ({ note, item }) => {
   const [checked, setChecked] = useState(item.checked);
-
-  useEffect(() => {
-    item.setChecked(checked);
-    note.setLastUpdate();
-  }, [checked]);
+  const [isShown, setIsShown] = useState(false);
 
   const handleRemoveItem = () => {
     note.removeItem(item.id);
@@ -15,28 +11,36 @@ const Item = ({ note, item }) => {
 
   const handleCheckChange = () => {
     setChecked((checked) => !checked);
+    item.setChecked(checked);
+    note.setLastUpdate();
   };
 
   return (
     <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'row',
-        marginTop: '10px',
-      }}
+      onMouseOver={() => setIsShown(true)}
+      onMouseLeave={() => setIsShown(false)}
     >
-      <Button basic compact size='mini' onClick={handleRemoveItem}>
-        x
-      </Button>
       <Checkbox
-        label={item.name}
-        onChange={handleCheckChange}
-        checked={checked}
         style={{
+          paddingTop: '5px',
+          paddingBottom: '5px',
           marginRight: '10px',
         }}
+        label={item.name}
+        checked={checked}
+        onChange={handleCheckChange}
       />
+      {isShown && (
+        <Button
+          basic
+          compact
+          size='mini'
+          color='red'
+          onClick={handleRemoveItem}
+        >
+          x
+        </Button>
+      )}
     </div>
   );
 };

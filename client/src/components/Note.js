@@ -1,10 +1,13 @@
+import { useState } from 'react';
+import { observer } from 'mobx-react-lite';
 import { Card, Button } from 'semantic-ui-react';
 import { useStore } from '../store/StoreContext';
 import NewItem from '../components/NewItem';
 import ItemsList from '../components/ItemsList';
 
-const Note = ({ note }) => {
+const Note = observer(({ note }) => {
   const store = useStore();
+  const [isShown, setIsShown] = useState(false);
 
   const handleRemoveNote = () => {
     store.removeNote(note.id);
@@ -13,16 +16,22 @@ const Note = ({ note }) => {
   return (
     <>
       <Card style={{ margin: '10px' }}>
-        <Card.Content>
-          <Button
-            basic
-            compact
-            size='mini'
-            floated='right'
-            onClick={handleRemoveNote}
-          >
-            X
-          </Button>
+        <Card.Content
+          onMouseOver={() => setIsShown(true)}
+          onMouseLeave={() => setIsShown(false)}
+        >
+          {isShown && (
+            <Button
+              basic
+              compact
+              size='mini'
+              color='red'
+              floated='right'
+              onClick={handleRemoveNote}
+            >
+              X
+            </Button>
+          )}
           <Card.Header style={{ marginTop: '1px' }}>{note.name}</Card.Header>
         </Card.Content>
         <Card.Content>
@@ -40,6 +49,6 @@ const Note = ({ note }) => {
       </Card>
     </>
   );
-};
+});
 
 export default Note;
