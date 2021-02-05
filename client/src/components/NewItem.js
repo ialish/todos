@@ -1,6 +1,8 @@
 import { useState, useRef } from 'react';
 import { Input, Button } from 'semantic-ui-react';
 
+const inputStyle = { width: '78%' };
+
 const NewItem = ({ note }) => {
   const [item, setItem] = useState('');
   const inputRef = useRef();
@@ -24,7 +26,7 @@ const NewItem = ({ note }) => {
     <>
       <form onSubmit={handleAdd}>
         <Input
-          style={{ width: '78%' }}
+          style={inputStyle}
           type='text'
           placeholder='Add an item...'
           value={item}

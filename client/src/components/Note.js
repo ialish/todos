@@ -5,6 +5,9 @@ import { useStore } from '../store/StoreContext';
 import NewItem from '../components/NewItem';
 import ItemsList from '../components/ItemsList';
 
+const cardStyle = { margin: '10px' };
+const cardHeaderStyle = { marginTop: '1px' };
+
 const Note = observer(({ note }) => {
   const store = useStore();
   const [isShown, setIsShown] = useState(false);
@@ -15,7 +18,7 @@ const Note = observer(({ note }) => {
 
   return (
     <>
-      <Card style={{ margin: '10px' }}>
+      <Card style={cardStyle}>
         <Card.Content
           onMouseOver={() => setIsShown(true)}
           onMouseLeave={() => setIsShown(false)}
@@ -32,7 +35,7 @@ const Note = observer(({ note }) => {
               X
             </Button>
           )}
-          <Card.Header style={{ marginTop: '1px' }}>{note.name}</Card.Header>
+          <Card.Header style={cardHeaderStyle}>{note.name}</Card.Header>
         </Card.Content>
         <Card.Content>
           <Card.Meta>
