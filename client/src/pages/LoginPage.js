@@ -22,11 +22,11 @@ const signUpStyle = {
 };
 
 const LoginPage = observer(() => {
+  const store = useStore();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [action, setAction] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
-  const store = useStore();
 
   const handleChange = (event) => {
     const { name, value } = event.target;

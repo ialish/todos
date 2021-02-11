@@ -6,9 +6,9 @@ const formStyle = { margin: 10 };
 const inputStyle = { padding: 5 };
 
 const NewNote = () => {
+  const store = useStore();
   const [noteName, setNoteName] = useState('');
   const inputRef = useRef();
-  const store = useStore();
 
   const handleChange = (e) => {
     setNoteName(e.target.value);
