@@ -26,13 +26,13 @@ const NewItem = ({ note }) => {
     <>
       <form onSubmit={handleAdd}>
         <Input
-          style={inputStyle}
           type='text'
           placeholder='Add an item...'
           value={item}
           onChange={handleChange}
           ref={inputRef}
           size='mini'
+          style={inputStyle}
         />
         <Button type='submit' basic color='orange' size='mini'>
           Add

@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Button, Checkbox } from 'semantic-ui-react';
 
 const checkboxStyle = {
-  paddingTop: '5px',
-  paddingBottom: '5px',
-  marginRight: '10px',
+  paddingTop: 5,
+  paddingBottom: 5,
+  marginRight: 10,
 };
 
 const Item = ({ note, item }) => {
@@ -27,10 +27,10 @@ const Item = ({ note, item }) => {
       onMouseLeave={() => setIsShown(false)}
     >
       <Checkbox
-        style={checkboxStyle}
         label={item.name}
         checked={checked}
         onChange={handleCheckChange}
+        style={checkboxStyle}
       />
       {isShown && (
         <Button

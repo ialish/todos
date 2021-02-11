@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import Item from './Item';
 
-const itemsListStyle = { marginBottom: '-7px' };
+const itemsListStyle = { marginBottom: -7 };
 
 const ItemsList = observer(({ note }) => {
   return (

@@ -5,8 +5,8 @@ import { useStore } from '../store/StoreContext';
 import NewItem from '../components/NewItem';
 import ItemsList from '../components/ItemsList';
 
-const cardStyle = { margin: '10px' };
-const cardHeaderStyle = { marginTop: '1px' };
+const cardStyle = { margin: 10 };
+const cardHeaderStyle = { marginTop: 1 };
 
 const Note = observer(({ note }) => {
   const store = useStore();

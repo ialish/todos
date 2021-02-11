@@ -1,7 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
 import dayjs from 'dayjs';
 
-const NotesStore = () => ({
+const Store = () => ({
+  user: {},
+  addUser(user) {
+    this.user = { ...this.user, ...user };
+  },
   notes: [],
   addNote(noteName) {
     this.notes.push({
@@ -33,4 +37,4 @@ const NotesStore = () => ({
   },
 });
 
-export default NotesStore;
+export default Store;
