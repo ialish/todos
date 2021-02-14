@@ -8,6 +8,8 @@ import NewNote from '../components/NewNote';
 import Notes from '../components/Notes';
 
 const logoutButtonStyle = { marginRight: 20 };
+const divStyle = { textAlign: 'center', margin: 20 };
+const saveNotesButtonStyle = { marginTop: 20 };
 
 const Homepage = observer(() => {
   const store = useStore();
@@ -48,10 +50,10 @@ const Homepage = observer(() => {
       >
         Log out
       </Button>
-      <div style={{ textAlign: 'center', margin: 20 }}>
+      <div style={divStyle}>
         <h1>Hi, {store.user.username}!</h1>
         <NewNote />
-        <Button style={{ marginTop: 20 }} onClick={() => store.saveNotes()}>
+        <Button style={saveNotesButtonStyle} onClick={() => store.saveNotes()}>
           Save Notes
         </Button>
       </div>
