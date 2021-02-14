@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import { Button } from 'semantic-ui-react';
 import axios from 'axios';
@@ -7,8 +7,11 @@ import { useStore } from '../store/StoreContext';
 import NewNote from '../components/NewNote';
 import Notes from '../components/Notes';
 
+const logoutButtonStyle = { marginRight: 20 };
+
 const Homepage = observer(() => {
   const store = useStore();
+  const history = useHistory();
 
   useEffect(() => {
     if (store.user.accessToken) {
@@ -17,7 +20,7 @@ const Homepage = observer(() => {
           headers: { authorization: `Bearer ${store.user.accessToken}` },
         });
 
-        store.addUser({ username: result.data.username });
+        store.setUser({ username: result.data.username });
         store.loadNotes();
       })();
     }
@@ -27,8 +30,24 @@ const Homepage = observer(() => {
     return <Redirect to='/login' />;
   }
 
+  const handleLogout = () => {
+    store.setUser({ username: '', accessToken: '' });
+    history.push('/login');
+  };
+
   return (
     <>
+      <Button
+        floated='right'
+        basic
+        color='black'
+        compact
+        size='mini'
+        onClick={handleLogout}
+        style={logoutButtonStyle}
+      >
+        Log out
+      </Button>
       <div style={{ textAlign: 'center', margin: 20 }}>
         <h1>Hi, {store.user.username}!</h1>
         <NewNote />

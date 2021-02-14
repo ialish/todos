@@ -46,7 +46,7 @@ const LoginPage = observer(() => {
       setErrorMsg(error);
     } else {
       setErrorMsg('');
-      store.addUser({ accessToken });
+      store.setUser({ accessToken });
     }
   };
 

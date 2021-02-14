@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const Store = () => ({
   user: {},
-  addUser(user) {
+  setUser(user) {
     this.user = { ...this.user, ...user };
   },
   notes: [],
