@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button, Checkbox } from 'semantic-ui-react';
+import { useStore } from '../store/StoreContext';
 
 const checkboxStyle = {
   paddingTop: 5,
@@ -8,17 +9,18 @@ const checkboxStyle = {
 };
 
 const Item = ({ note, item }) => {
+  const store = useStore();
   const [checked, setChecked] = useState(item.checked);
   const [isShown, setIsShown] = useState(false);
 
   const handleRemoveItem = () => {
-    note.removeItem(item.id);
+    store.removeItem(note.id, item.id);
   };
 
   const handleCheckChange = () => {
     setChecked((checked) => !checked);
-    item.setChecked(!checked);
-    note.setLastUpdate();
+    store.setChecked(note.id, item.id, !checked);
+    store.setLastUpdate(note.id);
   };
 
   return (

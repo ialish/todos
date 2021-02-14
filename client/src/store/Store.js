@@ -24,29 +24,38 @@ const Store = () => ({
     this.notes.push({
       id: uuidv4(),
       name: noteName,
-      items: [],
-      addItem(item) {
-        this.items.push({
-          id: uuidv4(),
-          name: item,
-          checked: false,
-          setChecked(checked) {
-            this.checked = checked;
-          },
-        });
-      },
-      removeItem(id) {
-        this.items = this.items.filter((item) => item.id !== id);
-      },
       created: dayjs().format('DD/MM/YYYY'),
       lastUpdate: '',
-      setLastUpdate() {
-        this.lastUpdate = dayjs().format('DD/MM/YYYY');
-      },
+      items: [],
     });
   },
-  removeNote(id) {
-    this.notes = this.notes.filter((note) => note.id !== id);
+  addItem(noteId, item) {
+    const noteIndex = this.notes.findIndex((note) => note.id === noteId);
+    this.notes[noteIndex].items.push({
+      id: uuidv4(),
+      name: item,
+      checked: false,
+    });
+  },
+  setChecked(noteId, itemId, checked) {
+    const noteIndex = this.notes.findIndex((note) => note.id === noteId);
+    const itemIndex = this.notes[noteIndex].items.findIndex(
+      (item) => item.id === itemId
+    );
+    this.notes[noteIndex].items[itemIndex].checked = checked;
+  },
+  removeItem(noteId, itemId) {
+    const noteIndex = this.notes.findIndex((note) => note.id === noteId);
+    this.notes[noteIndex].items = this.notes[noteIndex].items.filter(
+      (item) => item.id !== itemId
+    );
+  },
+  setLastUpdate(noteId) {
+    const noteIndex = this.notes.findIndex((note) => note.id === noteId);
+    this.notes[noteIndex].lastUpdate = dayjs().format('DD/MM/YYYY');
+  },
+  removeNote(noteId) {
+    this.notes = this.notes.filter((note) => note.id !== noteId);
   },
 });
 

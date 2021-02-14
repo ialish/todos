@@ -1,9 +1,11 @@
 import { useState, useRef } from 'react';
 import { Input, Button } from 'semantic-ui-react';
+import { useStore } from '../store/StoreContext';
 
 const inputStyle = { width: '78%' };
 
 const NewItem = ({ note }) => {
+  const store = useStore();
   const [item, setItem] = useState('');
   const inputRef = useRef();
 
@@ -16,8 +18,8 @@ const NewItem = ({ note }) => {
     inputRef.current.focus();
 
     if (item.length) {
-      note.addItem(item);
-      note.setLastUpdate();
+      store.addItem(note.id, item);
+      store.setLastUpdate(note.id);
       setItem('');
     }
   };
