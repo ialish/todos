@@ -8,3 +8,4 @@ Each note will be saved with:
 - All items the user wrote, with "checked" / "not checked" mark.
 - Date of creation.
 - Last updated date.
+-
