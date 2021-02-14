@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { Card, Button } from 'semantic-ui-react';
 import { useStore } from '../store/StoreContext';
-import NewItem from '../components/NewItem';
+import NewItem from './NewItem';
 import Items from './items';
 
 const cardStyle = { margin: 10 };
