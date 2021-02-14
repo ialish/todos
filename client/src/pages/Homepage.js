@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
+import { Button } from 'semantic-ui-react';
 import axios from 'axios';
 import { useStore } from '../store/StoreContext';
 import NewNote from '../components/NewNote';
@@ -17,6 +18,7 @@ const Homepage = observer(() => {
         });
 
         store.addUser({ username: result.data.username });
+        store.loadNotes();
       })();
     }
   }, []);
@@ -30,6 +32,9 @@ const Homepage = observer(() => {
       <div style={{ textAlign: 'center', margin: 20 }}>
         <h1>Hi, {store.user.username}!</h1>
         <NewNote />
+        <Button style={{ marginTop: 20 }} onClick={() => store.saveNotes()}>
+          Save Notes
+        </Button>
       </div>
       <Notes />
     </>

@@ -17,7 +17,7 @@ const Item = ({ note, item }) => {
 
   const handleCheckChange = () => {
     setChecked((checked) => !checked);
-    item.setChecked(checked);
+    item.setChecked(!checked);
     note.setLastUpdate();
   };
 

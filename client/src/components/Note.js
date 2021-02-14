@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 import { Card, Button } from 'semantic-ui-react';
 import { useStore } from '../store/StoreContext';
 import NewItem from '../components/NewItem';
-import ItemsList from '../components/ItemsList';
+import Items from './items';
 
 const cardStyle = { margin: 10 };
 const cardHeaderStyle = { marginTop: 1 };
@@ -42,7 +42,7 @@ const Note = observer(({ note }) => {
             <NewItem note={note} />
           </Card.Meta>
           <Card.Description>
-            <ItemsList note={note} />
+            <Items note={note} />
           </Card.Description>
         </Card.Content>
         <Card.Content extra>

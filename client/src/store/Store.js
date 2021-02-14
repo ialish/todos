@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import dayjs from 'dayjs';
+import axios from 'axios';
 
 const Store = () => ({
   user: {},
@@ -7,13 +8,25 @@ const Store = () => ({
     this.user = { ...this.user, ...user };
   },
   notes: [],
+  async saveNotes() {
+    await axios.post(`http://localhost:8000/user`, {
+      username: this.user.username,
+      notes: this.notes,
+    });
+  },
+  async loadNotes() {
+    const notes = await axios.get(
+      `http://localhost:8000/user/${this.user.username}`
+    );
+    this.notes = notes.data;
+  },
   addNote(noteName) {
     this.notes.push({
       id: uuidv4(),
       name: noteName,
-      itemsList: [],
+      items: [],
       addItem(item) {
-        this.itemsList.push({
+        this.items.push({
           id: uuidv4(),
           name: item,
           checked: false,
@@ -23,7 +36,7 @@ const Store = () => ({
         });
       },
       removeItem(id) {
-        this.itemsList = this.itemsList.filter((item) => item.id !== id);
+        this.items = this.items.filter((item) => item.id !== id);
       },
       created: dayjs().format('DD/MM/YYYY'),
       lastUpdate: '',
