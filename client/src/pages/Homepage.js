@@ -19,7 +19,7 @@ const Homepage = observer(() => {
     if (store.user.accessToken) {
       (async () => {
         const result = await axios.get(`http://localhost:8000/authenticate`, {
-          headers: { authorization: `Bearer ${store.user.accessToken}` },
+          headers: { Authorization: `Bearer ${store.user.accessToken}` },
         });
 
         store.setUser({ username: result.data.username });
